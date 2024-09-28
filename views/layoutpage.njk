@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sample - {{title}}</title>
+  <!--script src="/static/js/popper.min.js"></script-->
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <style>
+    .bd-example {
+      width: 800px;
+    }
+    {% block style %}
+    {% endblock %}
+  </style>
+</head>
+
+<body style="padding: 0px;" class="container">
+  <div style="padding: 15px;">
+    <h3 style="color: brown;">Sample</h3>
+    <pre> [ <a href="getall">Show List</a> | <a href="addone">Add One</a> ]</pre>
+    {% block main %}
+    {% endblock %}
+  </div>
+
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{% extends '../layout/main.html' %}
+{% block body %}
+  <div>
+    <div class="row">
+      <h3>Login Status</h3>
+    </div>
+  </div>
+  <div class="row">
+    {% if loggedin %}
+      <div>
+        Logged in
+      </div>
+      <div>
+        To logout click: <a href="/logout" style="font: 18px;font-weight: bold;"> Logout Now</a>
+      </div>
+    {% else %}
+      <div>
+        Please log in:
+        <a href="/login" style="font: 18px;font-weight: bold;"> Login Here</a>
+      </div>
+    {% endif %}
+  {% endblock %}
+</div>

@@ -1,0 +1,26 @@
+{% extends '../layoutfound.njk' %}
+
+{% block css %}
+.log-in-form {
+  border: 1px solid #cacaca;
+  padding: 1rem;
+  border-radius: 0;
+}
+{% endblock %}
+{# import '../user/login.njk' as nav #}
+{% block main %}
+<div style="width: 800px;margin: 0px auto;">
+<form class="log-in-form" action="/user/login" method="post" class="">
+  <h4 class="text-center">Log in with you email account</h4>
+  <label>Email
+    <input type="email" name="email" placeholder="somebody@example.com">
+  </label>
+  <label>Password
+    <input type="password" name="password" placeholder="Password">
+  </label>
+  <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+  <p><input type="submit" class="button expanded" value="Log in"></input></p>
+  <p class="text-center"><a href="#">Forgot your password?</a></p>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends '../layout/main.html' %}
+
+{% block body %}
+
+<form action="http://localhost:3000/login" method="post">
+  <div>
+    <div class="row">
+      <h3>Login</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-6 back">
+        <form action="#" method="post" class="form-group">
+          <div class="form-group">
+            <label>Email </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="far fa-envelope"></i></div>
+              </div>
+              <input type="text" class="form-control" name="email" id="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-key"></i></div>
+              </div>
+              <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-white"">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

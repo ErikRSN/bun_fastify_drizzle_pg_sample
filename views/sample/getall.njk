@@ -1,0 +1,32 @@
+{% extends '../layoutpage.njk' %}
+
+{% block style %}
+table { 
+  border: solid 1px black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 3px 5px ;
+  border: solid 1px black;
+}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row mb-1">
+      <div>All available sample data</div>
+      <div class="col-9">
+        <table>
+      {% for item in items %}
+      <tr>
+        <th>{{item.title }}</th><td> {{item.body}}</td><td> {{item.userid}}</td>
+        </tr>
+        {% else %}
+        <div>This would display data from sample table </div>
+      {% endfor %}
+      </table>
+      </div>
+     
+    </div>
+  </div>
+{% endblock %}

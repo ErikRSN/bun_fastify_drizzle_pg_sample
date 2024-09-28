@@ -1,0 +1,29 @@
+span.bcrumb_word {
+  font-size: 14px;
+  color: #2d5bdb;
+}
+span.bcrumb_delim {
+  font-size: 14px;
+  color: #ffb700;
+}
+p.date {
+  margin-top: 0px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 14px;
+}
+p.normal {
+  font-size: 16px;
+  color: #222222;
+}
+p.place {
+  font-family: Verdana, arial;
+  color: #c00000;
+  font-size: 12px;
+}
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+pre {
+  font-size: 15px;
+}
