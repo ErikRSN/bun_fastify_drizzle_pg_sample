@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from transformers import pipeline
 
 # Initialize Flask app
@@ -7,6 +7,10 @@ app = Flask(__name__)
 # Load Hugging Face NER pipeline (multilingual model)
 # You can change the model to one that supports specific languages if needed
 nlp = pipeline("ner", model="xlm-roberta-base")
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/parse_query', methods=['POST'])
 def parse_query():

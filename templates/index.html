@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NER Query</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 15px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Your Query</h1>
+    <input type="text" id="queryInput" placeholder="Enter your query (e.g., coiffeur in Zurich)">
+    <button onclick="submitQuery()">Submit</button>
+
+    <div class="results" id="results"></div>
+
+    <script>
+        function submitQuery() {
+            const query = document.getElementById('queryInput').value;
+            fetch('/parse_query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = `Business Type: ${data.business_type} <br> Location: ${data.location}`;
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>

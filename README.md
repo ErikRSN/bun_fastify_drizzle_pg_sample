@@ -79,7 +79,7 @@ First, ensure you have Bun installed. Then, install the following dependencies:
 - **Google Translate API**: For translating non-English queries to English.
 - **Fetch**: For making HTTP requests between Fastify and the Python API.
 
-### 2. Database Setup
+### 2. Virtual environment and dependencies
 
 Install virtual environment and dependencies for python:
 
@@ -92,3 +92,8 @@ Install virtual environment and dependencies for python:
 ```bash pip install flask transformers torch
 
 ```bash pip install -r requirements.txt
+
+### 3. Run the Flask API
+
+python app.py
+````
