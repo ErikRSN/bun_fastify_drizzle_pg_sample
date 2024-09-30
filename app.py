@@ -4,9 +4,8 @@ from transformers import pipeline
 # Initialize Flask app
 app = Flask(__name__)
 
-# Load Hugging Face NER pipeline (multilingual model)
-# You can change the model to one that supports specific languages if needed
-nlp = pipeline("ner", model="xlm-roberta-base")
+# Load a pre-trained NER model (switching to a more specific NER model)
+nlp = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english")
 
 @app.route('/')
 def index():
@@ -24,16 +23,21 @@ def parse_query():
     # Use the Hugging Face model to perform Named Entity Recognition (NER)
     ner_results = nlp(query)
 
+    # DEBUG: Print the raw output from the NER model
+    print(ner_results)
+
     # Extract relevant entities (like location, business type)
     structured_data = {
         'business_type': None,
         'location': None
     }
 
+    # Check the actual entity labels returned by the model and update conditions accordingly
     for entity in ner_results:
-        if entity['entity'] == 'B-LOC':  # Location entity
+        print(f"Entity: {entity['word']}, Label: {entity['entity']}")
+        if 'LOC' in entity['entity']:  # Location entity label (update if necessary)
             structured_data['location'] = entity['word']
-        if entity['entity'] == 'B-MISC':  # Business/service type entity
+        if 'MISC' in entity['entity'] or 'ORG' in entity['entity']:  # Business/service type entity label
             structured_data['business_type'] = entity['word']
 
     # Return the structured data as a JSON response
