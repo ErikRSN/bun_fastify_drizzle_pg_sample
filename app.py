@@ -4,8 +4,11 @@ from transformers import pipeline
 # Initialize Flask app
 app = Flask(__name__)
 
-# Load a pre-trained NER model (switching to a more specific NER model)
+# Load a pre-trained NER model
 nlp = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english")
+
+# Common business types for fallback when the NER model misses it
+business_types = ["coiffeur", "restaurant", "bakery", "bar", "gym", "cafe"]
 
 @app.route('/')
 def index():
@@ -32,13 +35,19 @@ def parse_query():
         'location': None
     }
 
-    # Check the actual entity labels returned by the model and update conditions accordingly
+    # Extract detected entities
     for entity in ner_results:
-        print(f"Entity: {entity['word']}, Label: {entity['entity']}")
-        if 'LOC' in entity['entity']:  # Location entity label (update if necessary)
+        if 'LOC' in entity['entity']:  # If it's a location
             structured_data['location'] = entity['word']
-        if 'MISC' in entity['entity'] or 'ORG' in entity['entity']:  # Business/service type entity label
+        if 'ORG' in entity['entity']:  # If it's an organization, treat it as a business type
             structured_data['business_type'] = entity['word']
+
+    # Fallback: If no business type is detected, check the query for common business types
+    if not structured_data['business_type']:
+        for business in business_types:
+            if business in query.lower():
+                structured_data['business_type'] = business
+                break
 
     # Return the structured data as a JSON response
     return jsonify(structured_data)
